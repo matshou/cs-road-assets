@@ -1,6 +1,10 @@
 # Directory for public releases
 /public
 
+# Project files
+*.xcf
+*.blend
+
 # Temp project files
 *.tmp
 *.bphys
