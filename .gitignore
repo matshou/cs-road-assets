@@ -1,0 +1,17 @@
+# Directory for public releases
+/public
+
+# Temp project files
+*.tmp
+*.bphys
+*.gz
+*.mtl
+*.blend1
+
+# Windows dir thumbnail cache
+Thumbs.db
+
+# Archive files
+*.zip
+*.rar
+*.7z
