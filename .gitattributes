@@ -2,7 +2,7 @@
 *          text=auto
 
 # Models & textures
-*.obj	   binary
+*.obj	   text eol=lf
 *.png	   binary
 
 # Documents
