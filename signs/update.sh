@@ -40,7 +40,7 @@ elif [ "$2" == "--textures" ]; then
 		done < "$ASSET_LIST_PATH"
 		printf "Finished generating textures\n"
 	fi
-	if [ "$3" != "--skip-imports" ]; then
+	if [ "$3" != "--skip-import" ]; then
 		printf "\nCopying texture files to imports...\n"
 		find "$EXPORT_DIR" -name '*.png' -exec cp {} "$IMPORT_PATH" \;
 		echo "Finished copying files!"
