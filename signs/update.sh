@@ -15,36 +15,10 @@ if [ -z "$2" ]; then
 	exit 3
 # Update asset textures
 elif [ "$2" == "--textures" ]; then
-	MATERIALS_DIR="$1"'/textures/material'
 	EXPORT_DIR="$1"'/textures/export'
-	ASSET_PREFIX="$1"'_road_sign'
-	MATERIAL_MAP=('s' 'lod_s')
-	if [ "$3" != "--skip-generate" ]; then
-		printf "Generating texture materials...\n"
-		while IFS="" read -r p || [ -n "$p" ]
-		do
-			total=${#MATERIAL_MAP[*]}
-			for (( i=0; i<=$(( $total -1 )); i++ ))
-			do
-				SRC="$MATERIALS_DIR"'/'"$ASSET_PREFIX"'_'"${MATERIAL_MAP[$i]}"'.png'
-				DEST="$EXPORT_DIR"'/'"$ASSET_PREFIX"'_'"$p"'_'"${MATERIAL_MAP[$i]}"'.png'
-				if test -f "$SRC"; then
-					cp "$SRC" "$DEST"
-					if ! test -f "$DEST"; then
-						printf "Failed to generate %s\n" "$DEST"
-					fi
-				else
-					printf "Skipping %s\n" "$SRC"
-				fi
-			done
-		done < "$ASSET_LIST_PATH"
-		printf "Finished generating textures\n"
-	fi
-	if [ "$3" != "--skip-import" ]; then
-		printf "\nCopying texture files to imports...\n"
-		find "$EXPORT_DIR" -name '*.png' -exec cp {} "$IMPORT_PATH" \;
-		echo "Finished copying files!"
-	fi
+	printf "Copying texture files to imports...\n"
+	find "$EXPORT_DIR" -name '*.png' -exec cp {} "$IMPORT_PATH" \;
+	echo "Finished copying files!"
 # Update asset models
 elif [ "$2" == "--models" ]; then
 	cd "$1"'/models/' && bash 'update.sh' "${@:3}"
