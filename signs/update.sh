@@ -18,7 +18,7 @@ elif [ "$2" == "--textures" ]; then
 	MATERIALS_DIR="$1"'/textures/material'
 	EXPORT_DIR="$1"'/textures/export'
 	ASSET_PREFIX="$1"'_road_sign'
-	MATERIAL_MAP=('s' 'lod_s')
+	MATERIAL_MAP=('n' 'lod_n')
 	if [ "$3" != "--skip-generate" ]; then
 		printf "Generating texture materials...\n"
 		while IFS="" read -r p || [ -n "$p" ]
@@ -40,11 +40,9 @@ elif [ "$2" == "--textures" ]; then
 		done < "$ASSET_LIST_PATH"
 		printf "Finished generating textures\n"
 	fi
-	if [ "$3" != "--skip-import" ]; then
-		printf "\nCopying texture files to imports...\n"
-		find "$EXPORT_DIR" -name '*.png' -exec cp {} "$IMPORT_PATH" \;
-		echo "Finished copying files!"
-	fi
+	printf "Copying texture files to imports...\n"
+	find "$EXPORT_DIR" -name '*.png' -exec cp {} "$IMPORT_PATH" \;
+	echo "Finished copying files!"
 # Update asset models
 elif [ "$2" == "--models" ]; then
 	cd "$1"'/models/' && bash 'update.sh' "${@:3}"
